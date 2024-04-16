@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding-right:10px;
+   padding-left:10px;
+}
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding-right:10px;
+   padding-left:10px;
+}
+
+input[type=submit] {
+  width: 60%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+input[type=button] {
+  width: 60%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
+body {
+	background-color:#CC3333;
+	
+	font-size: 24px;
+}
+.style3 {font-weight: bold}
+.style8 {color: #99FFFF;font-size:24px;font-weight: bold; }
+.style9 {color: #99FFFF; font-weight: bold; }
+.style11 {
+	font-size: 24px;
+	color: #FFFF00;
+	font-weight: bold;
+}
+
+-->
+</style>
+</head>
+
+<body>
+
+<p align="left">
+  <%@ include file="usermenu.html"  %>
+  <%@ include file="db.jsp"  %>
+  </p>
+<p align="center"><br />
+  <br />
+  <span class="style11">Complaint Registration Form</span>  </p>
+    <p align="left"><span class="style11"></span></p>
+    <form id="form1" name="form1" method="post" action="">
+    </form>
+    <form id="form1" name="form1" method="post" action="">
+      <table bgcolor="#311432" width="547" height="272" border="0" align="center">
+    <tr>
+      <td width="235"><div align="right"><span class="style9">name : </span></div></td>
+      <td width="302"><div align="left"><span class="style3">
+        <input name="name" type="text" value="<%= session.getAttribute("username") %>" "  readonly="" />
+      </span></div></td>
+    </tr>
+    <tr>
+      <td><div align="right"><span class="style9">Email  : </span></div></td>
+	  <td><div align="left"><span class="style3"">
+         <input name="name" type="text" value="<%= session.getAttribute("email") %>" "  readonly="" />
+      </span></div></td>
+    </tr>
+    <tr>
+      <td><div align="right" class="style8"><strong><span class="style3"><span class="style9">Complaint on</span> :</span></strong> </div>      </td>
+      <td>
+        
+        <div align="left">
+          <input type="text" name="s3" required/>
+        </div></td>
+    </tr>
+    <tr>
+      <td><p align="right" class="style9">Whats the Complaint  :</p></td>
+      <td>        
+        <div align="left">
+          <input type="text" name="s4" required/>
+        </div></td>
+    </tr>
+	<tr>
+      <td><p align="right" class="style9">Location  :</p></td>
+      <td>        
+        <div align="left">
+          <input type="text" name="s5" required/>
+        </div></td>
+    </tr>
+    <tr>
+      <td><div align="right"></div></td>
+      <td>
+        <div align="left">
+          <input type="submit" name="Submit" value="Submit" />
+          <input name="Submit2" type="reset" class="style3" value="Reset" />
+        </div></td>
+    </tr>
+  </table>
+</form>
+
+
+<% 
+if(request.getParameter("Submit")!=null){
+try{
+String name=request.getParameter("name");
+String email=request.getParameter("email");
+int x=stmt.executeUpdate("insert into complain  value('"+request.getParameter("s1")+"','"+request.getParameter("s2")+"','"+request.getParameter("s3")+"','"+request.getParameter("s4")+"','"+request.getParameter("s5")+"')");
+if(x!=0){
+out.print("Complaint Registered successfully");
+}
+}catch(Exception e){
+out.print(e);
+}
+}
+
+
+%>
+</body>
+
+</html>
